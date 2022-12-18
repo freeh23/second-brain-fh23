@@ -33,10 +33,20 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'be.freehoebeke.secondbrainfh23.SecondBrainFh23Application'
-        )
-    }
+//jar {
+//  manifest {
+//      attributes(
+//              'Main-Class': 'be.freehoebeke.secondbrainfh23.SecondBrainFh23Application'
+//      )
+//  }
+//}
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+    into "$buildDir/libs"
+    from(configurations.implementation)
 }
+
+stage.dependsOn(copyToLib)
