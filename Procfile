@@ -1,0 +1,1 @@
+web: java -jar build/libs/second-brain-fh23-0.0.1-SNAPSHOT.jar
